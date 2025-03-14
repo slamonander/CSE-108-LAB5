@@ -70,19 +70,22 @@ async function updateGrade() {
     let grade = document.getElementById("editGrade").value.trim();
 
     try {
-        let response = await fetch(`https://amhep.pythonanywhere.com/grades?name=${encodeURIComponent(name)}`,
+        let response = await fetch(`https://amhep.pythonanywhere.com/grades/${encodeURIComponent(name)}`,
     {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({name, grade: parseFloat(grade)})
+        body: JSON.stringify({grade: parseFloat(grade)})
     });
     let data = await response.json();
+    console.log("Successfully updated: ", data);
+
     document.getElementById("editName").value = "";
     document.getElementById("editGrade").value = "";
     } catch (error) {
         console.error("Error updating: ", error);
+
         document.getElementById("editName").value = "";
         document.getElementById("editGrade").value = "";
     }
