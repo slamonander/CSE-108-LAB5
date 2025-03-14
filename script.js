@@ -3,8 +3,26 @@ async function getGrades() {
         let response = await fetch(`https://amhep.pythonanywhere.com/grades`);
         let data = await response.json();
         console.log("All Grades: ", data);
+
+        showGrades(data);
     } catch (error) {
         console.error("Error fetching grades: ", error);
+    }
+}
+getGrades();
+
+async function showGrades(grades) {
+    let gradesTable = document.getElementById("showGrades");
+    gradesTable.innerHTML = "";
+
+    for (let name in grades) {
+        let grade = grades[name];
+        let row = document.createElement("tr");
+        row.innerHTML = `
+        <td>${name}</td>
+        <td>${grade}</td>`;
+
+        gradesTable.appendChild(row);
     }
 }
 
