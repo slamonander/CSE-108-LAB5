@@ -12,18 +12,17 @@ async function getGrades() {
 
 async function searchGrades(){
     let name = document.getElementById("searchName").value.trim();
-    let encodeName = encodeURIComponent(name);
 
     try {
         let response = await fetch(`https://amhep.pythonanywhere.com/grades`);
         if (!response.ok) throw new Error("Unable to find student.");
 
         let data = await response.json();
-        console.log(`Searched Name: "${encodeName}"`);
+        console.log(`Searched Name: "${name}"`);
         console.log("Server Response:", data);
 
         if (data[name]) {
-            document.getElementById("retrievedGrade").value = data[encodeName];
+            document.getElementById("retrievedGrade").value = data[name];
         } else {
             document.getElementById("retrievedGrade").value = "No grade found";
         }
@@ -38,7 +37,6 @@ async function searchGrades(){
 async function addGrades(){
     let name = document.getElementById("addName").value.trim();
     let grade = document.getElementById("addGrade").value.trim();
-    let encodeName = encodeURIComponent(name);
 
     if (!name || !grade) {
         console.error("Enter both name and grade");
@@ -70,8 +68,6 @@ async function addGrades(){
 async function updateGrade() {
     let name = document.getElementById("editName").value.trim();
     let grade = document.getElementById("editGrade").value.trim();
-    let encodeName = encodeURIComponent(name);
-    
 
     try {
         let response = await fetch(`https://amhep.pythonanywhere.com/grades/${encodeURIComponent(name)}`,
