@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Grades Program</title>
+</head>
+<body>
+    <div class="search">
+        <h1>Search for a Grade: </h1>
+        <p class="name">Student's Name: </p>
+        <input type="text" id="searchName"/>
+        <button onclick="searchGrades()">Submit</button>
+
+        <input type="text" id="retrievedGrade" placeholder="" readonly>
+    </div>
+    <!-- ------------------------------- -->
+
+    <div class="create">
+        <h1>Create New Student & Grade: </h1>
+        <p class="name">Student's Name:</p>
+        <input type="text" id="addName"/>
+    
+        <p class="grade">Student's Grade:</p>
+        <input type="text" id="addGrade"/>
+        <button onclick="addGrades()">Submit</button>
+    </div>
+    
+
+     <!-- ------------------------------- -->
+
+     <div class="edit">
+        <h1>Edit Student's Grade: </h1>
+        <p class="name">Student's Name: </p>
+        <input type="text" id="editName"/>
+
+        <p class="grade">New Grade: </p>
+        <input type="text" id="editGrade"/>
+        <button onclick="updateGrade()">Submit</button>
+    </div>
+
+     <!-- ------------------------------- -->
+
+     <div class="delete">
+        <h1>Delete Student's Grade: </h1>
+        <p class="name">Student's Name: </p>
+        <input type="text" id="deleteName"/>
+        <button onclick="deleteGrade()">Submit</button>
+    </div>
+
+    <!-- ------------------------------- -->
+
+    <div class="allGrades">
+        <button onclick="getGrades()"> Get all grades</button>
+        <ul id="list">
+        </ul>
+    </div>
+
+
+</body>
+</html>
