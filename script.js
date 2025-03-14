@@ -57,7 +57,7 @@ async function addGrades(){
         getGrades();
 
     } catch (error) {
-        console.error("Error adding.", error);
+        console.error("Error adding:", error);
         document.getElementById("addName").value = "";
         document.getElementById("addGrade").value = "";
     }
@@ -78,11 +78,13 @@ async function updateGrade() {
         },
         body: JSON.stringify({grade: parseFloat(grade)})
     });
+    
     let data = await response.json();
     console.log("Successfully updated: ", data);
 
     document.getElementById("editName").value = "";
     document.getElementById("editGrade").value = "";
+    getGrades();
     } catch (error) {
         console.error("Error updating: ", error);
 
@@ -95,11 +97,13 @@ async function deleteGrade() {
     let name = document.getElementById("deleteName").value.trim();
 
     try { 
-        let response = await fetch(`https://amhep.pythonanywhere.com/grades?name=${encodeURIComponent(name)}`, {
+        let response = await fetch(`https://amhep.pythonanywhere.com/grades/${encodeURIComponent(name)}`, {
             method: "DELETE"
         });
         let data = await response.json();
         document.getElementById("deleteName").value = "";
+        getGrades();
+
     } catch (error) {
         console.error("Error deleting: ", error);
         document.getElementById("deleteName").value = "";
